@@ -1,0 +1,18 @@
+name: Run webdriver tests
+
+on:
+  workflow_dispatch
+
+jobs:
+  run-ui-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Start selenoid
+      uses: Xotabu4/selenoid-github-action@v1
+    - uses: actions/checkout@v2
+    - name: Switch to Node.js 15.10.0
+      uses: actions/setup-node@v1
+      with:
+        node-version: 15.10.0
+    - name: Run tests
+      run: npm cit 
